@@ -3,19 +3,31 @@ main {
     flex: 1 0 auto;
     width: 100%;
     text-align: center;
+    margin: auto;
+    max-width: $breakpoint-large;
 
     h1 {
-        color: $color-white;
-    }
-    
-    h2 {
-        color: $color-font-dark;
+        color: $color-font-title;
+        font-size: $font-size-xl;
         padding-bottom: 30px;
         padding-top: 60px;
     }
+    
+    h2 {
+        color: $color-font-title;
+        font-size: $font-size-l;
+        padding-bottom: 25px;
+        padding-top: 50px;
+    }
+
+    h3 {
+        color: $color-font-p;
+        font-size: $font-size-l;
+        padding-bottom: 20px;
+        padding-top: 40px;
+    }
+
     p {
-        color: $color-font-dark;
-        font-size: $font-size-m;
         padding: 30px 100px;
         text-align: center;
     }

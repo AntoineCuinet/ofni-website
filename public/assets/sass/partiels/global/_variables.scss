@@ -1,43 +1,38 @@
 // ========================================================================
 // Colors
 // ========================================================================
-$color-bg: #344365 !default;
-$color-bg-dark: #000 !default;
-$color-primary: #0000ff !default;
-$color-secondary: #206295 !default;
-$color-tertiary: #f0f8ff !default;
-$color-white: #fff !default;
-$color-black: #000 !default;
-$color-infinit-heandband: #fff !default;
-$color-navbar: #ffffff31 !default;
-$color-hamburger: #ffffffdb !default;
-$color-hamburger-dark: #c0c0c0e3 !default;
+$color-primary: rgb(10, 31, 68) !default; // background color (60%)
+$color-secondary: rgb(31, 78, 121) !default; // (30%)
+$color-tertiary: rgb(200, 151, 28) !default; // (10%)
+$color-quaternary: rgb(228, 188, 86) !default; // hover color (>1%)
+$color-white: rgb(255, 255, 240) !default;
+$color-black: rgb(7,7,7) !default;
 
-$color-font: #333 !default;
-$color-font-dark: #c0c0c0 !default;
-$color-font-selection: #004d95 !default;
-$color-link: #491aa9 !default;
-$color-link-hover: #865cd9 !default;
-$color-danger: #8b1818 !default;
-$color-danger-hover: #ff0040 !default;
+$color-font-title: $color-white !default;
+$color-font-p: rgb(200, 200, 200) !default;
+$color-link: $color-tertiary !default;
+$color-link-hover: $color-quaternary !default;
+$color-danger: rgb(255, 65, 65) !default;
+$color-danger-hover: rgb(255, 110, 110) !default;
 
-$box-shadow: 0 2px 6px #00000052;
-$box-shadow-right: 4px 0px 6px -2px #0000001a;
-$kg--box-shadow: 5px 5px 20px #00000026;
+$box-shadow-black: 0 2px 6px rgba(0, 0, 0, 0.3);
+$box-shadow-white: 0 2px 6px rgba(255, 255, 255, 0.3);
+$box-shadow-right: 4px 0px 6px -2px rgba(0, 0, 0, 0.1);
 
 
 // ========================================================================
 // Font - family - sizes
 // ========================================================================
-$font-family: Arial, Courier, monospace !default;
+$font-family-title: 'Josefin Sans', Arial, Courier, monospace !default;
+$font-family-p: 'Noto Sans', Arial, Courier, monospace !default;
 $letter-spacing: 0.17em !default;
 $line-height: 1.5 !default;
 
 $font-size-global: 100%;
-$font-size-s: 0.75rem !default;
-$font-size-m: 1rem !default;
-$font-size-l: 1.125rem !default;
-$font-size-xl: 1.5rem !default;
+$font-size-s: 1rem !default;
+$font-size-m: 1.125rem !default;
+$font-size-l: 1.5rem !default;
+$font-size-xl: 2rem !default;
 
 $font-weight-n: 200;
 $font-weight-b: bold;
@@ -45,10 +40,7 @@ $font-weight-ber: bolder;
 
 $size-logo-text: 1.875rem;
 $size-logo-text-mq: 1.375rem;
-$size-link: $font-size-m;
 $size-hamburger: 1.56rem;
-$size-404: 50px;
-$size-404-phone: 35px;
 
 
 // ========================================================================
@@ -69,10 +61,10 @@ $max-width-xl: "screen and (max-width: #{$breakpoint-xlarge})";
 // Border - border-radius
 // ========================================================================
 $border: 1px solid $color-black !default;
-$border-r: 10px !default;
+$border-rad: 12px !default;
 
 // ========================================================================
 // Animations
 // ========================================================================
-$transition: all .4s ease-out !default;
+$transition: .4s ease-out !default;
 $rotated: 135deg;

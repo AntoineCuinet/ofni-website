@@ -8,11 +8,8 @@
     bottom: 20px;
     right: 20px;
     border-radius: 10px;
-    background: $color-navbar;
-    box-shadow: $box-shadow;
     @include blur-filter();
     opacity: 0;
-    transition: $transition;
 
     i {
         width: 50px;

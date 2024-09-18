@@ -3,7 +3,7 @@
 ## Nom du site
 
 Nom: OFNI
-Nom de domaine: https://ofni.asso.fr/
+Nom de domaine: <https://ofni.asso.fr/>
 
 ## Couleurs
 
@@ -21,12 +21,10 @@ gris: rgb(200, 200, 200)
 Pour les titres:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
 
 Pour les textes:
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
 
 ## Arborescence
 
@@ -38,7 +36,6 @@ HOME -> Hero section
     |-- Contact
     |-- Connexion        ==> Profil/dashboard
         |-- Inscription
-
 
 1. Accueil
 Présentation de l'association

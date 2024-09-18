@@ -2,13 +2,13 @@ html {
     scroll-behavior: smooth;
 
     font: {
-        family: $font-family;
+        family: $font-family-p;
         weight: 400;
         style: normal;
         size: $font-size-global;
     }
-    background: $color-bg;
-    color: $color-font;
+    background: $color-primary;
+    color: $color-font-p;
     line-height: $line-height;
     letter-spacing: $letter-spacing;
 }
@@ -16,7 +16,8 @@ html {
 body {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    margin: auto;
     min-height: 100vh;
     width: 100vw;
-    overflow-x: hidden;
 }

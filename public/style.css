@@ -1,18 +1,238 @@
-/* Error: Undefined variable.
- *    ,
- * 87 |         background: $color-primary-gradient;
- *    |                     ^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   public/assets/sass/partiels/global/_article.scss 87:21  @import
- *   public/assets/sass/style.scss 27:9                      root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 87 \2502          background: $color-primary-gradient;\a    \2502                      ^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   public/assets/sass/partiels/global/_article.scss 87:21  @import\a   public/assets/sass/style.scss 27:9                      root stylesheet";
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+i, em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+::selection {
+  color: rgb(7, 7, 7);
+  background: rgb(255, 255, 240);
+}
+
+::-moz-selection {
+  color: rgb(7, 7, 7);
+  background: rgb(255, 255, 240);
+}
+
+::-webkit-selection {
+  color: rgb(7, 7, 7);
+  background: rgb(255, 255, 240);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Noto Sans", Arial, Courier, monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100%;
+  background: rgb(10, 31, 68);
+  color: rgb(200, 200, 200);
+  line-height: 1.5;
+  letter-spacing: 0.17em;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  margin: auto;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  max-width: 1200px;
+}
+main h1 {
+  color: rgb(255, 255, 240);
+  font-size: 2rem;
+  padding-bottom: 30px;
+  padding-top: 60px;
+}
+main h2 {
+  color: rgb(255, 255, 240);
+  font-size: 1.5rem;
+  padding-bottom: 25px;
+  padding-top: 50px;
+}
+main h3 {
+  color: rgb(200, 200, 200);
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+  padding-top: 40px;
+}
+main p {
+  padding: 30px 100px;
+  text-align: center;
+}
+
+footer {
+  margin-top: 50px;
+  flex-shrink: 0;
+  width: 100vw;
+  border-top: 1px dashed rgb(7, 7, 7);
+}
+
+section {
+  border: 1px solid rgb(7, 7, 7);
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+nav {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  padding: 1.5625rem 2.1875rem;
+}
+
+#to-top-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  -o-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+}
+#to-top-btn i {
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+}
+#to-top-btn.active {
+  opacity: 1;
+  cursor: pointer;
+  z-index: 4;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+a {
+  color: rgb(200, 151, 28);
+  position: relative;
+}
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+iframe {
+  display: block;
+  margin-top: 50px;
+  max-width: 50%;
+  width: 500px !important;
+  height: 700px !important;
+  border: 3px solid rgb(10, 31, 68);
+  border-radius: 15px;
+  background: rgb(10, 31, 68);
+}
+@media screen and (max-width: 720px) {
+  iframe {
+    display: none;
+  }
+}
+
+.btn-danger, .btn {
+  appearance: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 20px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn {
+  background: rgb(10, 31, 68);
+  color: rgb(200, 151, 28);
+  border: 3px solid rgb(200, 151, 28);
+  transition: color 0.4s ease-out, border-color 0.4s ease-out;
+}
+.btn:hover {
+  color: rgb(228, 188, 86);
+  border-color: rgb(228, 188, 86);
+}
+
+.btn-danger {
+  background: rgb(10, 31, 68);
+  color: rgb(255, 65, 65);
+  border: 3px solid rgb(255, 65, 65);
+  transition: color 0.4s ease-out, border-color 0.4s ease-out;
+}
+.btn-danger:hover {
+  color: rgb(255, 110, 110);
+  border-color: rgb(255, 110, 110);
+}
+
+/*# sourceMappingURL=style.css.map */

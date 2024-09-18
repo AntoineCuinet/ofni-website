@@ -1,28 +1,40 @@
 %btn {
-    font-size: $font-size-m;
-    padding: rem(5) rem(10);
-    border: 2px solid $color-black;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: $transition;
+    // Reset //
+    appearance: none;
+    color: inherit;
+    font: inherit; // Use parent font //
+    cursor: pointer;
+
+    // Style //
+    padding: 10px 20px;
+    margin: 20px 10px;
+    border-radius: $border-rad;
+    font-weight: $font-weight-b;
+    text-transform: uppercase;
 }
 
 .btn {
     @extend %btn;
     background: $color-primary;
-    color: $color-white;
+    color: $color-tertiary;
+    border: 3px solid $color-tertiary;
+    transition: color $transition, border-color $transition;
 
     &:hover {
-        background: $color-secondary;
+        color: $color-quaternary;
+        border-color: $color-quaternary;
     }
 }
 
 .btn-danger {
     @extend %btn;
-    background: $color-danger;
-    color: $color-white;
+    background: $color-primary;
+    color: $color-danger;
+    border: 3px solid $color-danger;
+    transition: color $transition, border-color $transition;
 
     &:hover {
-        background: $color-danger-hover;
+        color: $color-danger-hover;
+        border-color: $color-danger-hover;
     }
 }

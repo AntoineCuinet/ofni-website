@@ -1,65 +1,7 @@
 footer {
     margin-top: 50px;
     flex-shrink: 0;
-    width: 100%;
+    width: 100vw;
     border-top: 1px dashed $color-black;
-    background: $color-infinit-heandband;
-    color: $color-font;
 
-    .contenu-footer {
-        max-width: $breakpoint-large;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        font-size: $size-link;
-        padding: 50px 0 10px;
-
-        @media #{$max-width-s} {
-            flex-wrap: wrap;
-            padding: rem(15) 0 rem(5);
-            font-size: $font-size-s;
-        }
-
-        .bloc {
-            width: 25%;
-            margin: 0 rem(30);
-
-            @media #{$max-width-s} {
-                width: 80%;
-                margin: rem(30);
-            }
-
-            &:nth-child(1),
-            &:nth-child(2) {
-                margin-bottom: rem(50);
-
-                @media #{$max-width-s} {
-                    margin-bottom: rem(10);
-                }
-            }
-
-            h3 {
-                font-size: $size-logo-text-mq;
-                padding-bottom: rem(20);
-                @include select();
-
-                @media #{$max-width-s} {
-                    padding-bottom: rem(5);
-                }
-            }
-
-            ul {
-                list-style-type: none;
-
-                li {
-                    margin: rem(10) 0;
-
-                    span {
-                        font-weight: bold;
-                    }
-                }
-            }
-        }   
-    }
 }

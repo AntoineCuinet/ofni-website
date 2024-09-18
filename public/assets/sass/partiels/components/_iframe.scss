@@ -6,13 +6,9 @@ iframe {
     height: 700px !important;
     border: 3px solid $color-primary;
     border-radius: 15px;
-    box-shadow: $box-shadow-white;
     background: $color-primary;
 
     @media #{$max-width-s} {
-        // max-width: 90%;
-        // width: 250px !important;
-        // height: 350px !important;
         display: none;
     }
 }
