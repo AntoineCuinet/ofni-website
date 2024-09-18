@@ -1,0 +1,24 @@
+%link {
+    color: light($color-bg, $color-link, $color-white);
+    text-decoration : underline;
+    transition: 0.3s ease-out;
+    font-size: $size-link;
+
+    @media #{$max-width-s} {
+        font-size: $font-size-s;
+    }
+}
+
+a {
+    @extend %link;
+    &:hover {
+        color: light($color-bg, $color-white, $color-link-hover);
+    }
+}
+
+.link-light {
+    @extend %link;
+    &:hover {
+        color: light($color-white);
+    }
+}

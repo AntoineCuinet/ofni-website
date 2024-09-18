@@ -1,0 +1,185 @@
+nav {
+    position: fixed;
+    z-index: 5;
+    top: rem(40); // for infinit headband
+    width: 100%;
+    padding: rem(25) rem(35);
+    transition: $transition;
+
+    @media #{$max-width-s} {
+        padding: rem(7) rem(15);
+        position: fixed;
+        top: 0;
+    }
+
+    &.sticky {
+        padding: rem(15) rem(35);
+        background: $color-navbar;
+        box-shadow: $box-shadow;
+        @include blur-filter();
+    }
+
+    .first-container {
+        max-width: $breakpoint-large;
+        // border-bottom: $border;
+        margin: auto;
+        display: flex;
+        align-items: center;
+
+        .nav-icon { //logo
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-right: rem(20);
+
+            @media #{$max-width-s} {
+                margin: auto;
+                order: 2;
+            }
+
+            span {
+                font-family: sans-serif;
+                transform: translateY(3px);
+                font-size: $size-logo-text;
+                margin-left: 10px;
+                font-weight: $font-weight-ber;
+                color: light($color-bg, $color-font);
+
+                @media #{$max-width-s} {
+                    font-size: $size-logo-text-mq;
+                }
+            }
+        }
+
+        .main-navlinks { //hamburger
+            @media #{$max-width-s} {
+                order: 1;
+            }
+
+            .hamburger {
+                display: none;
+
+                @media #{$max-width-s} {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    width: rem(20);
+                    height: rem(20);
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    margin-left: rem(10);
+                }
+
+                &.open {
+                    span:nth-child(1){
+                        @media #{$max-width-s} {
+                            transform: translate(0) rotate($rotated);
+                        }
+                    }
+                    span:nth-child(2){
+                        @media #{$max-width-s} {
+                            opacity: 0;
+                            transition: $transition;
+                        }
+                    }span:nth-child(3){
+                        @media #{$max-width-s} {
+                            transform: translate(0) rotate(-$rotated);
+                        }
+                    }
+                }
+
+                span {
+
+                    @media #{$max-width-s} {
+                        display: block;
+                        width: 100%;
+                        height: rem(2);
+                        position: absolute;
+                        pointer-events: none;
+                        transition: opacity 0.3s 0.15s;
+                        background-color: light($color-bg, $color-black);
+                        
+
+                        &:nth-child(1) {
+                            transform: translateY(rem(7));
+                        }
+                        &:nth-child(3) {
+                            transform: translateY(rem(-7));
+                        }
+
+                        &:nth-child(1), &:nth-child(3) {
+                            transition: $transition;
+                        }
+                    }
+                }
+            }
+        }
+
+        .navlinks-container { // links
+            margin-left: auto;
+            
+            &.open {
+                @media #{$max-width-s} {
+                    transform: translate(0%);
+                }
+            }
+            @media #{$max-width-s} {
+                max-width: 70%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                height: 100vh;
+                padding: rem(50);
+                background: $color-hamburger;
+                color: $color-font;
+                @include blur-filter();
+                box-shadow: $box-shadow-right;
+                transform: translate(-101%);
+            }
+
+            a {
+                display: inline-block;
+                position: relative;
+                margin: 0 rem(10);
+                font-size: $size-hamburger;
+                font-weight: $font-weight-ber;
+                text-decoration: none;
+                color: $color-font;
+
+                @media #{$max-width-s} {
+                    font-size: $size-hamburger;
+                    margin: rem(20) 0;
+                    color: $color-font;
+                }
+
+                &:nth-child(1) {
+                    color: $color-black;
+                }
+
+                &::after { // hover animation
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: rem(-3);
+                    width: 100%;
+                    height: rem(3);
+                    transform: scale(0);
+                    transform-origin: left;
+                    background: $color-black;
+                    transition: transform 0.3s ease-out;
+
+                    @media #{$max-width-s} {
+                        background: transparent;
+                    }
+                }
+                &:hover::after {
+                    transform: scaleX(1);
+                }
+            }  
+        }
+    }
+}

@@ -1,0 +1,78 @@
+// ========================================================================
+// Colors
+// ========================================================================
+$color-bg: #344365 !default;
+$color-bg-dark: #000 !default;
+$color-primary: #0000ff !default;
+$color-secondary: #206295 !default;
+$color-tertiary: #f0f8ff !default;
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-infinit-heandband: #fff !default;
+$color-navbar: #ffffff31 !default;
+$color-hamburger: #ffffffdb !default;
+$color-hamburger-dark: #c0c0c0e3 !default;
+
+$color-font: #333 !default;
+$color-font-dark: #c0c0c0 !default;
+$color-font-selection: #004d95 !default;
+$color-link: #491aa9 !default;
+$color-link-hover: #865cd9 !default;
+$color-danger: #8b1818 !default;
+$color-danger-hover: #ff0040 !default;
+
+$box-shadow: 0 2px 6px #00000052;
+$box-shadow-right: 4px 0px 6px -2px #0000001a;
+$kg--box-shadow: 5px 5px 20px #00000026;
+
+
+// ========================================================================
+// Font - family - sizes
+// ========================================================================
+$font-family: Arial, Courier, monospace !default;
+$letter-spacing: 0.17em !default;
+$line-height: 1.5 !default;
+
+$font-size-global: 100%;
+$font-size-s: 0.75rem !default;
+$font-size-m: 1rem !default;
+$font-size-l: 1.125rem !default;
+$font-size-xl: 1.5rem !default;
+
+$font-weight-n: 200;
+$font-weight-b: bold;
+$font-weight-ber: bolder;
+
+$size-logo-text: 1.875rem;
+$size-logo-text-mq: 1.375rem;
+$size-link: $font-size-m;
+$size-hamburger: 1.56rem;
+$size-404: 50px;
+$size-404-phone: 35px;
+
+
+// ========================================================================
+// Breakpoints - Layout
+// ========================================================================
+$breakpoint-small: 720px !default;
+$breakpoint-medium: 960px !default;
+$breakpoint-large: 1200px !default;
+$breakpoint-xlarge: 1600px !default;
+
+$max-width-s: "screen and (max-width: #{$breakpoint-small})";
+$max-width-m: "screen and (max-width: #{$breakpoint-medium})";
+$max-width-l: "screen and (max-width: #{$breakpoint-large})";
+$max-width-xl: "screen and (max-width: #{$breakpoint-xlarge})";
+
+
+// ========================================================================
+// Border - border-radius
+// ========================================================================
+$border: 1px solid $color-black !default;
+$border-r: 10px !default;
+
+// ========================================================================
+// Animations
+// ========================================================================
+$transition: all .4s ease-out !default;
+$rotated: 135deg;

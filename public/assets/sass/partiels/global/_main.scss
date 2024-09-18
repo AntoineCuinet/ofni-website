@@ -1,0 +1,22 @@
+main {
+    // Grow shrink basis
+    flex: 1 0 auto;
+    width: 100%;
+    text-align: center;
+
+    h1 {
+        color: $color-white;
+    }
+    
+    h2 {
+        color: $color-font-dark;
+        padding-bottom: 30px;
+        padding-top: 60px;
+    }
+    p {
+        color: $color-font-dark;
+        font-size: $font-size-m;
+        padding: 30px 100px;
+        text-align: center;
+    }
+}

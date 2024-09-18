@@ -1,0 +1,80 @@
+.infinit-part {
+    max-width: 100vw;
+    width: 100%;
+    padding: rem(8) 0;
+    position: fixed;
+    z-index: 5;
+    background: $color-infinit-heandband;
+    border-bottom: $border;
+
+    &:hover .container-infinit-part .txt {
+        animation-play-state: paused;
+    }
+
+    // @media (prefers-color-scheme: dark) {
+    //     background-color: $font-color-principal;
+    //     color: $font-color-dark;
+    // }
+
+    @media #{$max-width-s} {
+        display: none;
+    }
+
+    .container-infinit-part {
+        position: relative;
+        margin: auto;
+        max-width: $breakpoint-large;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        &::before {
+            left: 0;
+            background: linear-gradient(to left, transparent, $color-infinit-heandband);
+    
+            // @media (prefers-color-scheme: dark) {
+            //     // background: linear-gradient(to left, transparent, $font-color-principal);
+            // }
+        }
+        &::after {
+            right: 0;
+            background: linear-gradient(to right, transparent, $color-infinit-heandband);
+    
+            // @media (prefers-color-scheme: dark) {
+            //     background: linear-gradient(to right, transparent, $font-color-principal);
+            // }
+        }
+    
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .txt {
+            white-space: nowrap;
+            color: $color-black;
+            transform: translateX(100%);
+            @include select();
+            animation: scroll 35s linear infinite;
+    
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0%);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+
+            .it {
+                font-style: italic;
+                font-weight: bold;
+            }
+        }
+    }
+}

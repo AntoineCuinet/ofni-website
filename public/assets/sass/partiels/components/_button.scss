@@ -1,0 +1,28 @@
+%btn {
+    font-size: $font-size-m;
+    padding: rem(5) rem(10);
+    border: 2px solid $color-black;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: $transition;
+}
+
+.btn {
+    @extend %btn;
+    background: $color-primary;
+    color: $color-white;
+
+    &:hover {
+        background: $color-secondary;
+    }
+}
+
+.btn-danger {
+    @extend %btn;
+    background: $color-danger;
+    color: $color-white;
+
+    &:hover {
+        background: $color-danger-hover;
+    }
+}
