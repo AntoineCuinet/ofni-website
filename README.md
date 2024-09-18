@@ -3,6 +3,8 @@
 Bienvenue dans le dépôt du site web de l'association OFNI des étudiants en informatique de l'Université de Franche-Comté. Ce projet a pour objectif de fournir une plateforme intuitive et moderne pour la communauté étudiante, avec des fonctionnalités dédiées à la gestion des événements, des projets et des ressources partagées.
 Ce site a été conçu et développé par Antoine CUINET, votre trésorier de l'association OFNI du bureau de 2024-2025.
 
+![Logo de l'association OFNI](screenshot.png)
+
 ## 📋 Table des Matières
 
 - [Présentation](#-présentation)
