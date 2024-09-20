@@ -20,30 +20,26 @@ Ce site a été conçu et développé par Antoine CUINET, votre trésorier de l'
 Le site web de l'association OFNI est une plateforme centralisée pour les étudiants en informatique, leur permettant de :
 
 - S'informer sur l'association ainsi que sur les événements à venir
-- Participer à des projets étudiants
+- Participer à des projets et des événements étudiants
 - Accéder à des ressources pédagogiques et tutoriels
 - Suivre les actualités de l'association
 
 ## 🚀 Fonctionnalités
 
 - Page d'accueil interactive avec les dernières actualités et événements.
-- Gestion des événements avec un calendrier interactif et la possibilité de s'inscrire.
-- Section projets pour visualiser et proposer des projets étudiants.
-- Espace membre avec un forum et des discussions en ligne.
+- Gestion des événements avec un calendrier interactif.
+- Espace membre avec des cours et des ressources pédagogiques en ligne.
 - Adhésion en ligne via un formulaire simple.
+- Une boutique en lignes pour des goodies et des places à des événements.
 - Partenariats et opportunités de stages pour aider les étudiants à entrer en contact avec des entreprises.
 
 ## 🗂️ Arborescence du Site
 
 - Accueil : Présentation de l'association, actualités, événements à venir.
-- À propos : Histoire de l'association, équipe du bureau, objectifs.
+- À propos : Histoire de l'association, équipe du bureau, objectifs, status.
 - Événements : Calendrier des événements, inscription, détails.
-- Projets : Liste des projets en cours, proposition de projets.
-- Adhésion : Formulaire d'inscription pour rejoindre l'association.
-- Partenariats : Partenaires, offres de stages et d'emploi.
-- Ressources : Cours, tutoriels et outils recommandés.
-- Forum : Discussions entre membres, entraide et support.
-- Contact : Informations de contact et réseaux sociaux.
+- Boutique : Formulaire d'inscription pour rejoindre l'association, goodies.
+- Espace membre : Cours, tutoriels, annales, ressources pédagogiques
 
 ## 💻 Technologies Utilisées
 

@@ -1,3 +1,3 @@
 <?php 
 
-echo '<a href="wireframe.php">wireframe</a>';
+echo '<a href="assets/php/wireframe.php">wireframe</a>';
