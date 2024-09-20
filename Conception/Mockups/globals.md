@@ -1,4 +1,4 @@
-# Infos
+# Globals infomations about the Website
 
 ## Nom du site
 
@@ -19,12 +19,15 @@ gris: rgb(200, 200, 200)
 ## Fontes
 
 Pour les titres:
+<!--
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet"> -->
 
 Pour les textes:
+<!--
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
+-->
 
 ## Arborescence
 
@@ -167,7 +170,7 @@ Faire figurer du code (propre de préférence), un prof qui aide un étudiant su
 
 De la programmation, de l’entraide, du fun
 
-#### LOGOTYPE
+#### LOGOTYPES
 
 - Logo
 - Mascotte
