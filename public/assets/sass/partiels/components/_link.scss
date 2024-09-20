@@ -8,7 +8,7 @@
 
 a {
     @extend %link;
-    color: $color-link;
+    color: $color-tertiary;
     position: relative;
 
     &::after {

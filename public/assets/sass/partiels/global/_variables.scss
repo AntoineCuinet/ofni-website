@@ -1,7 +1,7 @@
 // ========================================================================
 // Colors
 // ========================================================================
-$color-primary: rgb(10, 31, 68) !default; // background color (60%)
+$color-primary: rgb(5, 24, 58) !default; // background color (60%)
 $color-secondary: rgb(31, 78, 121) !default; // (30%)
 $color-tertiary: rgb(200, 151, 28) !default; // (10%)
 $color-quaternary: rgb(228, 188, 86) !default; // hover color (>1%)
@@ -10,8 +10,6 @@ $color-black: rgb(7,7,7) !default;
 
 $color-font-title: $color-white !default;
 $color-font-p: rgb(200, 200, 200) !default;
-$color-link: $color-tertiary !default;
-$color-link-hover: $color-quaternary !default;
 $color-danger: rgb(255, 65, 65) !default;
 $color-danger-hover: rgb(255, 110, 110) !default;
 

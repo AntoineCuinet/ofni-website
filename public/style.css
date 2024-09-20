@@ -52,7 +52,7 @@ html {
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
-  background: rgb(10, 31, 68);
+  background: rgb(5, 24, 58);
   color: rgb(200, 200, 200);
   line-height: 1.5;
   letter-spacing: 0.17em;
@@ -191,9 +191,9 @@ iframe {
   max-width: 50%;
   width: 500px !important;
   height: 700px !important;
-  border: 3px solid rgb(10, 31, 68);
+  border: 3px solid rgb(5, 24, 58);
   border-radius: 15px;
-  background: rgb(10, 31, 68);
+  background: rgb(5, 24, 58);
 }
 @media screen and (max-width: 720px) {
   iframe {
@@ -214,7 +214,7 @@ iframe {
 }
 
 .btn {
-  background: rgb(10, 31, 68);
+  background: rgb(5, 24, 58);
   color: rgb(200, 151, 28);
   border: 3px solid rgb(200, 151, 28);
   transition: color 0.4s ease-out, border-color 0.4s ease-out;
@@ -225,7 +225,7 @@ iframe {
 }
 
 .btn-danger {
-  background: rgb(10, 31, 68);
+  background: rgb(5, 24, 58);
   color: rgb(255, 65, 65);
   border: 3px solid rgb(255, 65, 65);
   transition: color 0.4s ease-out, border-color 0.4s ease-out;
