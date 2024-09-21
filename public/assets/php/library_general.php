@@ -1,23 +1,19 @@
 <?php
+/* ========================================================================
+ * File Name: library_general.php - Library of general functions
+ * Author: CUINET Antoine
+ * Version: 1.0
+ * Date: September 2024
+ *
+ * Note: This code was developed by CUINET Antoine, see https://acuinet.fr
+ * 
+ * naming rules: 
+ *   - function names respect SNAKE CASE notation
+ *   - the names of the functions are explicit
+======================================================================== */
 
-/*********************************************************
- *        Bibliothèque de fonctions génériques
- *
- * Les régles de nommage sont les suivantes.
- * Les noms des fonctions respectent la notation camel case.
- *
- * Ils commencent en général par un terme définisant le "domaine" de la fonction :
- *  aff   la fonction affiche du code html / texte destiné au navigateur
- *  html  la fonction renvoie du code html / texte
- *  bd    la fonction gère la base de données
- *
- * Les fonctions qui ne sont utilisés que dans un seul script
- * sont définies dans le script et les noms de ces fonctions se
- * sont suffixées avec la lettre 'L'.
- *
- *********************************************************/
 
-//____________________________________________________________________________
+
 /**
  * Arrêt du script si erreur de base de données
  *
