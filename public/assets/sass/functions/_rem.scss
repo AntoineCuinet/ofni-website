@@ -1,16 +1,16 @@
-@use 'sass:math'; // Importation du module math pour utiliser math.div()
+@use 'sass:math';
 
 @function strip-unit($number) {
     @if type-of($number) == 'number' and not unitless($number) {
-        @return math.div($number, ($number * 0 + 1)); // Remplace la division avec math.div()
+        @return math.div($number, ($number * 0 + 1));
     }
     @return $number;
 }
 
 @function rem($size, $base: 16px) {
-    @return math.div(1rem * $size, strip-unit($base)); // Remplace la division avec math.div()
+    @return math.div(1rem * $size, strip-unit($base));
 }
 
 @function em($size, $base: 16px) {
-    @return math.div(1em * $size, strip-unit($base)); // Remplace la division avec math.div()
+    @return math.div(1em * $size, strip-unit($base));
 }
