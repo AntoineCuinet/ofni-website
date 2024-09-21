@@ -1,0 +1,10 @@
+@mixin blur-filter($blur: 10px) {
+    @include filter(blur($blur));
+}
+
+@mixin filter($property) {
+    -webkit-backdrop-filter: $property;
+    -moz-backdrop-filter: $property;
+    -o-backdrop-filter: $property;
+    backdrop-filter: $property;
+}

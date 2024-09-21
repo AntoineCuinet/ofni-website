@@ -1,0 +1,14 @@
+iframe {
+    display: block;
+    margin-top: 50px;
+    max-width: 50%;
+    width: 500px !important;
+    height: 700px !important;
+    border: 3px solid $color-primary;
+    border-radius: 15px;
+    background: $color-primary;
+
+    @media #{$max-width-s} {
+        display: none;
+    }
+}

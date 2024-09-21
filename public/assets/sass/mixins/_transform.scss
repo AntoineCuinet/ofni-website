@@ -1,0 +1,11 @@
+@mixin rotate($rotation: 10deg) {
+	@include transform(rotate($rotation));
+}
+
+@mixin transform($property) {
+	-webkit-transform: $property;
+	-moz-transform: $property;
+	-ms-transform: $property;
+	-o-transform: $property;
+	transform: $property;
+}

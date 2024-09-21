@@ -1,0 +1,21 @@
+{
+  "name": "package.json",
+  "author": "CUINET Antoine",
+  "version": "1.0.0",
+  "main": "script.js",
+  "license": "CUINET",
+  "scripts": {
+    "start": "npm run sass",
+    "sass": "sass public/assets/sass/style.scss public/style.css --watch",
+    "server": "http-server -o -c-1 -a localhost -p 8080 ./public",
+    "build-sass": "sass public/assets/sass/style.scss:public/style.css --style=compressed --no-source-map"
+  },
+  "dependencies": {
+    "sass": "^1.79.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "http-server": "^14.1.1",
+    "npm-check-updates": "^17.1.2"
+  }
+}
