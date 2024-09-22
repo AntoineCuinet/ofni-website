@@ -30,6 +30,7 @@ function db_exit_error(array $err):void {
     ob_end_clean(); // Deleting anything that may have already been generated
 
     render_head('Erreur...', '', '.');
+    echo '<main>';
     
     if (IS_DEV){
         echo    '<h4>', $err['titre'], '</h4>',
@@ -48,9 +49,9 @@ function db_exit_error(array $err):void {
     else {
         echo '<h1>Oups... une erreur s\'est produite</h1>',
         '<p>Une erreur est survenue, veuillez réessayer ultérieurement.</p>',
-        '<a href="./index.php">Retour à l\'accueil</a>';
+        '<button class="btn" onclick="window.location.href=\'./index.php\'">Retour à l\'accueil</button>';
     }
-
+    echo '</main>';
     render_footer();
 
     if (! IS_DEV){
@@ -195,18 +196,6 @@ function parameters_control(string $global_table, array $obligatory_keys, array 
         return false;
     }
     return true;
-}
-
-
-/**
- * Test if a value is an integer value
- *
- * @param  mixed    $x     value to test
- *
- * @return bool     true if integer, false otherwise
- */
-function is_integer(mixed $x):bool {
-    return is_numeric($x) && ($x == (int) $x);
 }
 
 

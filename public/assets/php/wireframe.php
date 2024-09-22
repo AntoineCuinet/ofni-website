@@ -8,49 +8,61 @@
  * Note: This code was developed by CUINET Antoine, see https://acuinet.fr
 ======================================================================== */
 
-echo
-'<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireframe</title>
-    <link rel="stylesheet" href="../../style.css">
+// Loading function libraries
+require_once('./library_app.php');
+require_once('./library_general.php');
+// Buffering of outputs
+ob_start();
+// Starting or resuming the session
+session_start();
+// Display of the header
+render_head('Wireframe', 'Wireframe page', '../../');
 
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
-</head>
-<body>
-    <header>
-    </header>
 
-    <main>
-        <div>
-            <h1>TITLE-1</h1>
-        </div>
-        <div>
-            <h2>TITLE-2</h2>
-        </div>
-        <div>
-            <h3>TITLE-3</h3>
-        </div>
-        <div>
-            <p>Paragraph</p>
-        </div>
-        <div>
-            <a href="#">link</a>
-        </div>
-        <div>
-            <button class="btn">button</button>
-            <button class="btn-danger">button danger</button>
-        </div>
-    </main>
+// Generating page content
+show_content();
 
-    <footer>
 
-    </footer>
-</body>
-</html>';
+// Display of the footer
+render_footer();
+// Sending the buffer
+ob_end_flush();
+
+
+
+/* ========================================================================
+ *
+ * Definitions of local page functions
+ *
+======================================================================== */
+
+/**
+ * Affichage du contenu principal de la page
+ *
+ * @return  void
+ */
+function show_content(): void {
+
+    echo 
+    '<main>',
+        '<div>',
+            '<h1>TITLE-1</h1>',
+        '</div>',
+        '<div>',
+            '<h2>TITLE-2</h2>',
+        '</div>',
+        '<div>',
+            '<h3>TITLE-3</h3>',
+        '</div>',
+        '<div>',
+            '<p>Paragraph</p>',
+        '</div>',
+        '<div>',
+            '<a href="#">link</a>',
+        '</div>',
+        '<div>',
+            '<button class="btn">button</button>',
+            '<button class="btn-danger">button danger</button>',
+        '</div>',
+    '</main>';
+}

@@ -15,7 +15,7 @@ ini_set('display_startup_errors', '1');
 error_reporting( E_ALL );
 
 // Development (IS_DEV = true) or production (IS_DEV = false) phase
-define ('IS_DEV', true);
+define ('IS_DEV', false);
 
 // Encryption key for URLs (for the AES-128 algorithm in CBC mode)
 define('CLE_CHIFFREMENT', 'z31uU2g22y/XhFpfuilzEw==');
@@ -37,6 +37,9 @@ define('LMAX_LAST_NAME', 64);
 define('LMAX_FIRST_NAME', 64);
 define('LMAX_MAIL', 64);
 define('LMIN_PASSWORD', 8);
+
+define('TITLE', ''); // TODO: title of the application
+define('KEY_WORDS', ''); // TODO: keywords for the application
 
 // Constants: definition of fonts
 define('FONT_TITLE', 'https://fonts.googleapis.com/css2?family=Josefin+Sans'); // TODO: URL de la police de caractères
@@ -76,18 +79,24 @@ function render_head(string $title, string $description, string $prefix = '.') :
             '<meta charset="UTF-8">',
             '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-            '<link rel="meta" type="application/json" href="./meta.json">',
+            '<link rel="meta" type="application/json" href="', $prefix,'/meta.json">',
             '<meta name="description" content="', $description, '">',
-            '<meta name="keywords" content="">', // TODO: mots-clés de la page
-            '<title> | ', $title, '</title>', // TODO: titre de la page
+            '<meta name="keywords" content="', KEY_WORDS, '">',
+            '<title>', TITLE, ' | ', $title, '</title>',
             '<link rel="stylesheet" type="text/css" href="', $prefix,'/style.css">',
-            '<link rel="icon" type="image/icon" href="./favicon.ico"/>',
+            '<link rel="icon" type="image/icon" href="', $prefix,'/favicon.ico"/>',
 
-            '<meta property="og:image" content="http://.../favicon.jpeg">', // TODO: URL de l'image
-            '<meta property="og:url" content="https://.fr/">', // TODO: URL de la page
+            '<meta property="og:image" content="http://', TITLE, '.fr/favicon.jpeg">',
+            '<meta property="og:url" content="https://', TITLE, '.fr/">',
             '<meta property="og:description" content="', $description, '">',
-            '<meta property="og:title" content="">', // TODO: titre de la page
+            '<meta property="og:title" content="', TITLE, '">',
             '<meta property="og:type" content="website">',
+
+
+            '<link rel="preconnect" href="https://fonts.googleapis.com">',
+            '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+            '<link href="', FONT_TITLE, '" rel="stylesheet">', 
+            '<link href="', FONT_PARAGRAPH, '" rel="stylesheet">',
         '</head>',
         '<body>';
 
@@ -118,7 +127,9 @@ function render_header(string $prefixe = '.') : void {
 function render_footer() : void {
 
     echo
-    '<footer>&copy; TITRE - Septembre 2024 - Tous droits réservés</footer>',
+    '<footer>',
+        '<p>&copy; ', TITLE, ' - Septembre 2024 - Tous droits réservés</p>',
+    '</footer>',
     '<script src="./assets/scripts/script.js"></script>',
     '</body></html>';
 }
