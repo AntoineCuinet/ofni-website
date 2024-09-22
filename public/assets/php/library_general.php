@@ -9,32 +9,29 @@
  * 
  * Naming rules: 
  *   - Function names respect SNAKE CASE notation
- *   - The names of the functions are explicit
+ *   - The names of the functions are explicit (begin with db_, render_, ...)
 ======================================================================== */
 
 
 
 /**
- * Arrêt du script si erreur de base de données
+ * Stopping the script if database error
  *
- * Affichage d'un message d'erreur, puis arrêt du script
- * Fonction appelée quand une erreur 'base de données' se produit :
- *      - lors de la phase de connexion au serveur MySQL ou MariaDB
- *      - ou lorsque l'envoi d'une requête échoue
+ * Displaying an error message, then stopping the script
+ * Function called when a 'database' error occurs:
+ *      - During the connection phase to the MySQL or MariaDB server
+ *      - Or when sending a request fails
  *
- * @param array    $err    Informations utiles pour le débogage
+ * @param  array    $err    Useful information for debugging
  *
  * @return void
  */
-function bdErreurExit(array $err):void {
-    ob_end_clean(); // Suppression de tout ce qui a pu être déja généré
+function db_exit_error(array $err):void {
+    ob_end_clean(); // Deleting anything that may have already been generated
 
-    echo    '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">',
-            '<title>Erreur',
-            IS_DEV ? ' base de données': '', '</title>',
-            '</head><body>';
+    render_head('Erreur...', '', '.');
+    
     if (IS_DEV){
-        // Affichage de toutes les infos contenues dans $err
         echo    '<h4>', $err['titre'], '</h4>',
                 '<pre>',
                     '<strong>Erreur mysqli</strong> : ',  $err['code'], "\n",
@@ -49,13 +46,15 @@ function bdErreurExit(array $err):void {
                 '</pre>';
     }
     else {
-        echo 'Une erreur s\'est produite';
+        echo '<h1>Oups... une erreur s\'est produite</h1>',
+        '<p>Une erreur est survenue, veuillez réessayer ultérieurement.</p>',
+        '<a href="./index.php">Retour à l\'accueil</a>';
     }
 
-    echo    '</body></html>';
+    render_footer();
 
     if (! IS_DEV){
-        // Mémorisation des erreurs dans un fichier de log
+        // Storing errors in a log file
         $fichier = @fopen('error.log', 'a');
         if($fichier){
             fwrite($fichier, '['.date('d/m/Y').' '.date('H:i:s')."]\n");
@@ -72,21 +71,20 @@ function bdErreurExit(array $err):void {
             fclose($fichier);
         }
     }
-    exit(1);        // ==> ARRET DU SCRIPT
+    exit(1);        // ==> SCRIPT STOP
 }
 
-//____________________________________________________________________________
 /**
- * Ouverture de la connexion à la base de données en gérant les erreurs.
+ * Opening the connection to the database
  *
- * En cas d'erreur de connexion, une page "propre" avec un message d'erreur
- * adéquat est affiché ET le script est arrêté.
+ * Opening the connection to the database while managing errors
+ * In case of connection error, a "clean" page with an appropriate error message is displayed
+ * AND the script is stopped
  *
- * @return mysqli  objet connecteur à la base de données
+ * @return mysqli  database connector object
  */
-function bdConnect(): mysqli {
-    // pour forcer la levée de l'exception mysqli_sql_exception
-    // si la connexion échoue
+function db_connect(): mysqli {
+    // If the connection fails
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     try{
         $conn = mysqli_connect(BD_SERVER, BD_USER, BD_PASS, BD_NAME);
@@ -94,47 +92,45 @@ function bdConnect(): mysqli {
     catch(mysqli_sql_exception $e){
         $err['titre'] = 'Erreur de connexion';
         $err['code'] = $e->getCode();
-        // $e->getMessage() est encodée en ISO-8859-1, il faut la convertir en UTF-8
+        // $e->getMessage() is encoded in ISO-8859-1, it must be converted to UTF-8
         $err['message'] = mb_convert_encoding($e->getMessage(), 'UTF-8', 'ISO-8859-1');
-        $err['appels'] = $e->getTraceAsString(); //Pile d'appels
+        $err['appels'] = $e->getTraceAsString(); // Stack of function calls
         $err['autres'] = array('Paramètres' =>   'BD_SERVER : '. BD_SERVER
                                                     ."\n".'BD_USER : '. BD_USER
                                                     ."\n".'BD_PASS : '. BD_PASS
                                                     ."\n".'BD_NAME : '. BD_NAME);
-        bdErreurExit($err); // ==> ARRET DU SCRIPT
+        db_exit_error($err); // ==> SCRIPT STOP
     }
     try{
-        //mysqli_set_charset() définit le jeu de caractères par défaut à utiliser lors de l'envoi
-        //de données depuis et vers le serveur de base de données.
+        //mysqli_set_charset() sets the default character set to use when sending data to and from the database server.
         mysqli_set_charset($conn, 'utf8');
-        return $conn;     // ===> Sortie connexion OK
+        return $conn;     // ===> CONNECTION OK
     }
     catch(mysqli_sql_exception $e){
         $err['titre'] = 'Erreur lors de la définition du charset';
         $err['code'] = $e->getCode();
         $err['message'] = mb_convert_encoding($e->getMessage(), 'UTF-8', 'ISO-8859-1');
         $err['appels'] = $e->getTraceAsString();
-        bdErreurExit($err); // ==> ARRET DU SCRIPT
+        db_exit_error($err); // ==> SCRIPT STOP
     }
 }
 
-//____________________________________________________________________________
 /**
- * Envoie une requête SQL au serveur de BdD en gérant les erreurs.
+ * Sending an SQL request to the database server while managing errors
  *
- * En cas d'erreur, une page propre avec un message d'erreur est affichée et le
- * script est arrêté. Si l'envoi de la requête réussit, cette fonction renvoie :
- *      - un objet de type mysqli_result dans le cas d'une requête SELECT
- *      - true dans le cas d'une requête INSERT, DELETE ou UPDATE
+ * In case of an error, a clean page with an error message is displayed and the script is stopped
+ * If the request is successful, this function returns:
+ *      - an object of type mysqli_result in the case of a SELECT request
+ *      - true in the case of an INSERT, DELETE or UPDATE request
  *
- * @param   mysqli              $bd     Objet connecteur sur la base de données
- * @param   string              $sql    Requête SQL
+ * @param  mysqli              $db     database connector object
+ * @param  string              $sql    SQL request
  *
- * @return  mysqli_result|bool          Résultat de la requête
+ * @return mysqli_result|bool          Request result
  */
-function bdSendRequest(mysqli $bd, string $sql): mysqli_result|bool {
+function db_send_request(mysqli $db, string $sql): mysqli_result|bool {
     try{
-        return mysqli_query($bd, $sql);
+        return mysqli_query($db, $sql);
     }
     catch(mysqli_sql_exception $e){
         $err['titre'] = 'Erreur de requête';
@@ -142,182 +138,152 @@ function bdSendRequest(mysqli $bd, string $sql): mysqli_result|bool {
         $err['message'] = $e->getMessage();
         $err['appels'] = $e->getTraceAsString();
         $err['autres'] = array('Requête' => $sql);
-        bdErreurExit($err);    // ==> ARRET DU SCRIPT
+        db_exit_error($err);    // ==> SCRIPT STOP
     }
 }
 
+
 /**
- *  Protection des sorties (code HTML généré à destination du client).
+ * Output protection (HTML code generated for the client)
  *
- *  Fonction à appeler pour toutes les chaines provenant de :
- *      - de saisies de l'utilisateur (formulaires)
- *      - de la bdD
- *  Permet de se protéger contre les attaques XSS (Cross site scripting)
- *  Convertit tous les caractères éligibles en entités HTML, notamment :
- *      - les caractères ayant une signification spéciales en HTML (<, >, ...)
- *      - les caractères accentués
+ * Function to call for all strings coming from:
+ *    - user input (forms)
+ *    - from the database
+ * Helps protect against XSS (Cross site scripting) attacks
+ * Converts all eligible characters to HTML entities, including:
+ *    - characters with special meaning in HTML (<, >, ...)
+ *    - accented characters
  *
- *  Si on lui transmet un tableau, la fonction renvoie un tableau où toutes les chaines
- *  qu'il contient sont protégées, les autres données du tableau ne sont pas modifiées.
+ * If we pass an array to it, the function returns an array where all the strings
+ * that it contains are protected, the other data in the table is not modified
  *
- * @param  array|string  $content   la chaine à protéger ou un tableau contenant des chaines à protéger
+ * @param  array|string  $content   the string to protect or an array containing strings to protect
  *
- * @return array|string             la chaîne protégée ou le tableau
+ * @return array|string             the protected string or array
  */
-function htmlProtegerSorties(array|string $content): array|string {
+function html_protect_outputs(array|string $content): array|string {
     if (is_array($content)) {
         foreach ($content as &$value) {
             if (is_array($value) || is_string($value)){
-                $value = htmlProtegerSorties($value);
+                $value = html_protect_outputs($value);
             }
         }
-        unset ($value); // à ne pas oublier (de façon générale)
+        unset ($value);
         return $content;
     }
-    // $content est de type string
     return htmlentities($content, ENT_QUOTES, encoding:'UTF-8');
 }
 
 
-//___________________________________________________________________
 /**
- * Contrôle des clés présentes dans les tableaux $_GET ou $_POST - piratage ?
+ * Control of keys present in $_GET or $_POST tables - hacking?
  *
- * Soit $x l'ensemble des clés contenues dans $_GET ou $_POST
- * L'ensemble des clés obligatoires doit être inclus dans $x.
- * De même $x doit être inclus dans l'ensemble des clés autorisées,
- * formé par l'union de l'ensemble des clés facultatives et de
- * l'ensemble des clés obligatoires. Si ces 2 conditions sont
- * vraies, la fonction renvoie true, sinon, elle renvoie false.
- * Dit autrement, la fonction renvoie false si une clé obligatoire
- * est absente ou si une clé non autorisée est présente; elle
- * renvoie true si "tout va bien"
+ * @param  string    $global_table      'post' or 'get'
+ * @param  array     $obligatory_keys   table containing the keys that must be present
+ * @param  array     $optional_keys     array containing optional keys
  *
- * @param string    $tabGlobal          'post' ou 'get'
- * @param array     $clesObligatoires   tableau contenant les clés qui doivent obligatoirement être présentes
- * @param array     $clesFacultatives   tableau contenant les clés facultatives
- *
- * @return bool                         true si les paramètres sont corrects, false sinon
+ * @return bool                         true if the parameters are correct, false otherwise
  */
-function parametresControle(string $tabGlobal, array $clesObligatoires, array $clesFacultatives = []): bool{
-    $x = strtolower($tabGlobal) == 'post' ? $_POST : $_GET;
+function parameters_control(string $global_table, array $obligatory_keys, array $optional_keys = []): bool{
+    $x = strtolower($global_table) == 'post' ? $_POST : $_GET;
 
     $x = array_keys($x);
-    // $clesObligatoires doit être inclus dans $x
-    if (count(array_diff($clesObligatoires, $x)) > 0){
+    if (count(array_diff($obligatory_keys, $x)) > 0){
         return false;
     }
-    // $x doit être inclus dans
-    // $clesObligatoires Union $clesFacultatives
-    if (count(array_diff($x, array_merge($clesObligatoires, $clesFacultatives))) > 0){
+    if (count(array_diff($x, array_merge($obligatory_keys, $optional_keys))) > 0){
         return false;
     }
     return true;
 }
 
-//___________________________________________________________________
+
 /**
- * Teste si une valeur est une valeur entière
+ * Test if a value is an integer value
  *
- * @param   mixed    $x     valeur à tester
+ * @param  mixed    $x     value to test
  *
- * @return  bool     true si entier, false sinon
+ * @return bool     true if integer, false otherwise
  */
-function estEntier(mixed $x):bool {
+function is_integer(mixed $x):bool {
     return is_numeric($x) && ($x == (int) $x);
 }
 
-//___________________________________________________________________
+
 /**
- * Teste si un entier est compris entre 2 autres
+ * Checking the presence, validity, and decryption of a GET parameter
  *
- * Les bornes $min et $max sont incluses.
- *
- * @param   int    $x  valeur à tester
- * @param   int    $min  valeur minimale
- * @param   int    $max  valeur maximale
- *
- * @return  bool   true si $min <= $x <= $max
+ * @param  string  $key    GET parameter key
+ * 
+ * @return int     decrypted article identifier
  */
-function estEntre(int $x, int $min, int $max):bool {
-    return ($x >= $min) && ($x <= $max);
+function get_verification(string $key): int {
+    if (! parameters_control('get', ["$key"])){
+        exit(1); // ==> End of the function
+    }
+
+    // URL decryption
+    $id = decrypt_sign_URL($_GET["$key"]);
+
+    if (! is_integer($id)){
+        exit(1); // ==> End of the function
+    }
+
+    if ($id <= 0){
+        exit(1); // ==> End of the function
+    }
+
+    return $id;
 }
 
-//___________________________________________________________________
+
 /**
- * Renvoie un tableau contenant le nom des mois (utile pour certains affichages)
+ * Returns an array containing the names of the months (useful for certain displays)
  *
- * @return array    Tableau à indices numériques contenant les noms des mois
+ * @return array    Numerical index table containing the names of the months
  */
-function getArrayMonths() : array {
+function get_array_months() : array {
     return array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
 }
 
-//___________________________________________________________________
+
 /**
- * Vérification des champs texte des formulaires
- * - utilisé par la page inscription.php
+ * Checking form text fields
  *
- * @param  string        $texte     texte à vérifier
- * @param  string        $nom       chaîne à ajouter dans celle qui décrit l'erreur
- * @param  array         $erreurs   tableau dans lequel les erreurs sont ajoutées
- * @param  ?int          $long      longueur maximale du champ correspondant dans la base de données
- * @param  ?string       $expReg    expression régulière que le texte doit satisfaire
+ * @param  string        $text     text to check
+ * @param  string        $name     string to add in the one that describes the error
+ * @param  array         $errors   table in which errors are added
+ * @param  ?int          $length   maximum length of the corresponding field in the database
+ * @param  ?string       $regex    regular expression that the text must satisfy
  *
- * @return  void
+ * @return void
  */
-function verifierTexte(string $texte, string $nom, array &$erreurs, ?int $long = null, ?string $expReg = null) : void{
-    if (empty($texte)){
-        $erreurs[] = "$nom ne doit pas être vide.";
+function check_text(string $text, string $name, array &$errors, ?int $length = null, ?string $regex = null) : void{
+    if (empty($text)){
+        $errors[] = "$name ne doit pas être vide.";
     }
     else {
-        if(strip_tags($texte) != $texte){
-            $erreurs[] = "$nom ne doit pas contenir de tags HTML.";
+        if(strip_tags($text) != $text){
+            $errors[] = "$name ne doit pas contenir de tags HTML.";
         }
-        else if ($expReg !== null && ! preg_match($expReg, $texte)){
-            $erreurs[] = "$nom n'est pas valide.";
+        else if ($regex !== null && ! preg_match($regex, $text)){
+            $errors[] = "$name n'est pas valide.";
         }
-        if ($long !== null && mb_strlen($texte, encoding:'UTF-8') > $long){
-            $erreurs[] = "$nom ne peut pas dépasser $long caractères.";
+        if ($length !== null && mb_strlen($text, encoding:'UTF-8') > $length){
+            $errors[] = "$name ne peut pas dépasser $length caractères.";
         }
     }
 }
 
-//___________________________________________________________________
+
 /**
- * Affiche une ligne d'un tableau permettant la saisie d'un champ input de type 'text', 'password', 'date' ou 'email'
+ * Encrypts and signs a value to pass it into a URL using the AES-128 algorithm in CBC mode
  *
- * La ligne est constituée de 2 cellules :
- * - la 1ère cellule contient un label permettant un "contrôle étiqueté" de l'input
- * - la 2ème cellule contient l'input
- *
- * @param string    $libelle        Le label associé à l'input
- * @param array     $attributs      Un tableau associatif donnant les attributs de l'input sous la forme nom => valeur
- * @param string    $prefixId       Le préfixe utilisé pour l'id de l'input, ce qui donne un id égal à {$prefixId}{$attributs['name']}
- *
- * @return  void
- */
-function affLigneInput(string $libelle, array $attributs = array(), string $prefixId = 'text'): void{
-    echo    '<tr>',
-                '<td><label for="', $prefixId, $attributs['name'], '">', $libelle, '</label></td>',
-                '<td><input id="', $prefixId, $attributs['name'], '"';
-
-    foreach ($attributs as $cle => $value){
-        echo ' ', $cle, ($value !== null ? "='{$value}'" : '');
-    }
-    echo '></td></tr>';
-}
-
-
-//___________________________________________________________________
-/**
- * Chiffre et signe une valeur pour la passer dans une URL en utilisant l'algorithme AES-128 en mode CBC.
- *
- * @param string $val La valeur à chiffrer
+ * @param  string  $val   The value to be quantified
  * 
- * @return string La valeur chiffrée encodée URL
+ * @return string  The URL encoded encrypted value
  */
-function chiffrerSignerURL(string $val) : string {
+function encrypt_sign_URL(string $val) : string {
 	$ivlen = openssl_cipher_iv_length($cipher='AES-128-CBC');
 	$iv = openssl_random_pseudo_bytes($ivlen);
 	$x = openssl_encrypt($val, $cipher, base64_decode(CLE_CHIFFREMENT), OPENSSL_RAW_DATA, $iv);
@@ -326,164 +292,18 @@ function chiffrerSignerURL(string $val) : string {
 	return urlencode($x);
 }
 
-//___________________________________________________________________
+
 /**
- * Déchiffre une valeur chiffrée avec la chiffrerSignerURL()
+ * Decrypts an encrypted value with encryptSignerURL()
  *
- * @param string $x La valeur à déchiffrer
+ * @param  string  $x   The value to decipher
  * 
- * @return string|false La valeur déchiffrée ou false si erreur
+ * @return string|false The decrypted value or false if error
  */
-function dechiffrerSignerURL(string $x) : string|false {
-	$x = base64_decode($x); // Décodage de la valeur encodée URL
+function decrypt_sign_URL(string $x) : string|false {
+	$x = base64_decode($x);
     $ivlen = openssl_cipher_iv_length($cipher='AES-128-CBC');
     $iv = substr($x, 0, $ivlen);
     $x = substr($x, $ivlen);
     return openssl_decrypt($x, $cipher, base64_decode(CLE_CHIFFREMENT), OPENSSL_RAW_DATA, $iv);
-}
-
-
-//_______________________________________________________________
-/**
- * Conversion d'une date format AAAAMMJJHHMM au format mois AAAA
- *
- * @param  int      $date   la date à afficher.
- *
- * @return string           la chaîne qui représente la date
- */
-function dateIntToStringL(int $date): string {
-    $mois = substr($date, -8, 2);
-    $annee = substr($date, 0, -8);
-
-    $months = getArrayMonths();
-
-    return $months[$mois - 1] . ' ' . $annee;
-}
-
-
-//_______________________________________________________________
-/**
- * Vérification pour l'upload d'une image
- *  - Vérification de la taille du fichier, si elle est supérieure à 100 Ko
- *  - Vérification de l’extension du fichier (JPG)
- *  - Vérification du contenu du fichier avec son type MIME
- *  - Vérifie si les dimensions correspondent au format 4/3
- *
- * @param   array   $erreurs    tableau associatif contenant les erreurs de saisie
- * 
- * @return  void
- */
-function verifUpload(array &$erreurs): void {
-    if ($_FILES['file']['error'] === 0) {
-
-        // Vérification de la taille du fichier, si elle est supérieure à 1Mo
-        $maxSize = 1000 * 1024; // 1Mo
-        $file_size = $_FILES['file']['size'];
-        if ($file_size > $maxSize) {
-            $erreurs[] = 'La taille de l\'image dépasse 100 Ko.';
-        }
-
-        // Vérification de l’extension du fichier (JPG)
-        $oks = array('.jpeg');
-        $nom = $_FILES['file']['name'];
-        $ext = strtolower(substr($nom, strrpos($nom, '.')));
-        if (! in_array($ext, $oks)) {
-            $erreurs[] = 'Le fichier n\'est pas au format JPEG.';
-        }
-
-        // Vérification du contenu du fichier avec son type MIME
-        $oks = array('image/jpeg');
-        $type = mime_content_type($_FILES['file']['tmp_name']);
-        if (! in_array($type, $oks)) {
-            $erreurs[] = 'Le contenu du fichier n\'est pas autorisé.';
-        }
-    } else {
-        $erreurs[] = 'Erreur lors du téléchargement de l\'image, réessayer.';
-    }
-}
-
-//_______________________________________________________________
-/**
- * Vérification du droit d'écriture sur le répertoire $uploadDir
- * - Si le répertoire n'existe pas, on le créer
- * - Si le répertoire n'est pas accessible en écriture, on le rend accessible
- *
- * string  $uploadDir  répertoire de stockage des images
- * 
- * @return  void
- */
-function verifDroitEcriture(string $uploadDir): void {
-    if (!file_exists($uploadDir)) {
-        // Le répertoire n'existe pas, on le créer
-        mkdir($uploadDir, 0700, true);
-    }
-    if (!is_writable($uploadDir)) {
-        chmod($uploadDir, 0700);
-    }
-}
-
-
-//_______________________________________________________________
-/**
- * Vérification de la présence, de la validité et déchiffrage d'un paramètre GET
- *
- * @param   string  $cle    clé du paramètre GET
- * @param   string  $page   nom de la page
- * 
- * @return  int     identifiant de l'article déchiffré
- */
-function verifGet(string $cle, string $page): int {
-    if (! parametresControle('get', ["$cle"])){
-        //affErreur('Il faut utiliser une URL de la forme : http://..../php/' . $page . '.php?' . $cle . '=XXX');
-        exit(1); // ==> fin de la fonction
-    }
-
-    // Déchiffrement de l'URL
-    $id = dechiffrerSignerURL($_GET["$cle"]);
-
-    if (! estEntier($id)){
-        //affErreur('L\'identifiant doit être un entier');
-        exit(1); // ==> fin de la fonction
-    }
-
-    if ($id <= 0){
-        //affErreur('L\'identifiant doit être un entier strictement positif');
-        exit(1); // ==> fin de la fonction
-    }
-
-    return $id;
-}
-
-
-//_______________________________________________________________
-/**
- * Redimensionnement de l'image (si besoin) et upload de celle-ci
- *
- * @param   int     $ID         identifiant de l'article
- * @param   string  $uploadDir  répertoire de stockage des images
- * 
- * @return  void
- */
-function depotFile(int $ID, string $uploadDir) {
-    // Obtenir les dimensions de l'image
-    $image = $_FILES['file']['tmp_name'];
-    $image_info = getimagesize($image);
-    $width_orig = $image_info[0];
-    $height_orig = $image_info[1];
-
-    // Définition des dimensions pour l'image redimensionnée
-    $new_width = 100; // Largeur
-    $new_height = 100; // Hauteur
-
-    $Dest = $uploadDir . $ID . '.jpeg';
-
-    $image = imagecreatefromjpeg($image);
-    // Créer une nouvelle image redimensionnée
-    $new_image = imagecreatetruecolor($new_width, $new_height);
-    imagecopyresampled($new_image, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
-    
-    imagejpeg($new_image, $Dest);
-    // Libérer la mémoire
-    imagedestroy($image);
-    imagedestroy($new_image);
 }
