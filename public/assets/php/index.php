@@ -16,7 +16,7 @@ ob_start();
 // Starting or resuming the session
 session_start();
 // Display of the header
-render_head('Le site de blagues n°1 en France !', '', '.');
+render_head('Accueil', 'Page d\'accueil du site de l\'OFNI, le site des étudiants en informatique de Besançon !', '.');
 
 
 // Generating page content

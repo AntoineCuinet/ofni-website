@@ -38,11 +38,11 @@ define('LMAX_FIRST_NAME', 64);
 define('LMAX_MAIL', 64);
 define('LMIN_PASSWORD', 8);
 
-define('TITLE', ''); // TODO: title of the application
-define('KEY_WORDS', ''); // TODO: keywords for the application
+define('TITLE', 'OFNI');
+define('KEY_WORDS', 'association, etudiant, étudiants, fac, OFNI, code, Fun, Algo, Bat. C,Programmation, PDL, Détente, Entraide, Informatique, Java, JS, C++, Python, Framework, PHP, Soirées, Jeux Vidéo, Films, Jeux de société, Sorties, Ski, Révisions, Laser Game, Trampo Park, Réseau, Asso, NUIT DE L’INFO');
 
 // Constants: definition of fonts
-define('FONT_TITLE', 'https://fonts.googleapis.com/css2?family=Josefin+Sans'); // TODO: URL de la police de caractères
+define('FONT_TITLE', 'https://fonts.googleapis.com/css2?family=Josefin+Sans');
 define('FONT_PARAGRAPH', 'https://fonts.googleapis.com/css2?family=Noto+Sans');
 
 
