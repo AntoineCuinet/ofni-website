@@ -60,7 +60,7 @@ html {
   font-weight: 400;
   font-style: normal;
   font-size: 100%;
-  background: rgb(5, 24, 58);
+  background: rgb(8, 16, 44);
   color: rgb(200, 200, 200);
   line-height: 1.5;
   letter-spacing: 0.17em;
@@ -90,18 +90,21 @@ main {
 }
 main h1 {
   color: rgb(255, 255, 240);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 2rem;
   padding-bottom: 30px;
   padding-top: 60px;
 }
 main h2 {
   color: rgb(255, 255, 240);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 1.5rem;
   padding-bottom: 25px;
   padding-top: 50px;
 }
 main h3 {
   color: rgb(200, 200, 200);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 1.5rem;
   padding-bottom: 20px;
   padding-top: 40px;
@@ -199,9 +202,9 @@ iframe {
   max-width: 50%;
   width: 500px !important;
   height: 700px !important;
-  border: 3px solid rgb(5, 24, 58);
+  border: 3px solid rgb(8, 16, 44);
   border-radius: 15px;
-  background: rgb(5, 24, 58);
+  background: rgb(8, 16, 44);
 }
 @media screen and (max-width: 720px) {
   iframe {
@@ -222,7 +225,7 @@ iframe {
 }
 
 .btn {
-  background: rgb(5, 24, 58);
+  background: rgb(8, 16, 44);
   color: rgb(200, 151, 28);
   border: 3px solid rgb(200, 151, 28);
   transition: color 0.4s ease-out, border-color 0.4s ease-out;
@@ -233,14 +236,14 @@ iframe {
 }
 
 .btn-danger {
-  background: rgb(5, 24, 58);
-  color: rgb(255, 65, 65);
-  border: 3px solid rgb(255, 65, 65);
+  background: rgb(8, 16, 44);
+  color: rgb(249, 56, 56);
+  border: 3px solid rgb(249, 56, 56);
   transition: color 0.4s ease-out, border-color 0.4s ease-out;
 }
 .btn-danger:hover {
-  color: rgb(255, 110, 110);
-  border-color: rgb(255, 110, 110);
+  color: rgb(255, 97, 97);
+  border-color: rgb(255, 97, 97);
 }
 
 /*# sourceMappingURL=style.css.map */

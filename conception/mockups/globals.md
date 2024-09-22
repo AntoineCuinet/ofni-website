@@ -96,9 +96,9 @@ Un logo qui se transforme (info/ofni)
 Noir: rgb(7,7,7)
 Blanc: rgb(255, 255, 240)
 Gris: rgb(200, 200, 200)
-Primaire: bleu nuit: rgb(10, 31, 68)
+Primaire: bleu nuit: rgb(8, 16, 44)
 Secondaire: bleu clair: rgb(31, 78, 121)
-Tertière: jaune: rgb(228, 177, 52)
+Tertière: jaune: rgb(200, 151, 28)
 
 #### Enciènes couleurs
 

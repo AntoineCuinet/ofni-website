@@ -29,13 +29,13 @@ echo
 
     <main>
         <div>
-            <h1>title-h1</h1>
+            <h1>TITLE-1</h1>
         </div>
         <div>
-            <h2>title-h2</h2>
+            <h2>TITLE-2</h2>
         </div>
         <div>
-            <h3>title-h3</h3>
+            <h3>TITLE-3</h3>
         </div>
         <div>
             <p>Paragraph</p>

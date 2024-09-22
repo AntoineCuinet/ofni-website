@@ -7,9 +7,9 @@
  *
  * Note: This code was developed by CUINET Antoine, see https://acuinet.fr
  * 
- * naming rules: 
- *   - function names respect SNAKE CASE notation
- *   - the names of the functions are explicit
+ * Naming rules: 
+ *   - Function names respect SNAKE CASE notation
+ *   - The names of the functions are explicit
 ======================================================================== */
 
 
@@ -434,7 +434,7 @@ function verifDroitEcriture(string $uploadDir): void {
  */
 function verifGet(string $cle, string $page): int {
     if (! parametresControle('get', ["$cle"])){
-        affErreur('Il faut utiliser une URL de la forme : http://..../php/' . $page . '.php?' . $cle . '=XXX');
+        //affErreur('Il faut utiliser une URL de la forme : http://..../php/' . $page . '.php?' . $cle . '=XXX');
         exit(1); // ==> fin de la fonction
     }
 
@@ -442,12 +442,12 @@ function verifGet(string $cle, string $page): int {
     $id = dechiffrerSignerURL($_GET["$cle"]);
 
     if (! estEntier($id)){
-        affErreur('L\'identifiant doit être un entier');
+        //affErreur('L\'identifiant doit être un entier');
         exit(1); // ==> fin de la fonction
     }
 
     if ($id <= 0){
-        affErreur('L\'identifiant doit être un entier strictement positif');
+        //affErreur('L\'identifiant doit être un entier strictement positif');
         exit(1); // ==> fin de la fonction
     }
 

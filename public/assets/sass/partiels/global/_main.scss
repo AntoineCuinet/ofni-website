@@ -8,6 +8,7 @@ main {
 
     h1 {
         color: $color-font-title;
+        font-family: $font-family-title;
         font-size: $font-size-xl;
         padding-bottom: 30px;
         padding-top: 60px;
@@ -15,6 +16,7 @@ main {
     
     h2 {
         color: $color-font-title;
+        font-family: $font-family-title;
         font-size: $font-size-l;
         padding-bottom: 25px;
         padding-top: 50px;
@@ -22,6 +24,7 @@ main {
 
     h3 {
         color: $color-font-p;
+        font-family: $font-family-title;
         font-size: $font-size-l;
         padding-bottom: 20px;
         padding-top: 40px;
