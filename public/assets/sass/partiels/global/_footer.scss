@@ -1,7 +1,9 @@
 footer {
-    margin: 50px auto 10px auto;
+    margin: 50px auto 20px auto;
+    padding-top: 20px;
     text-align: center;
     flex-shrink: 0;
-    width: 100vw;
-    border-top: 1px dashed $color-black;
+    width: 80vw;
+    max-width: $breakpoint-large;
+    border-top: 1px dashed $color-tertiary;
 }

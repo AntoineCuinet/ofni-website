@@ -84,7 +84,6 @@ header {
 main {
   flex: 1 0 auto;
   width: 100%;
-  text-align: center;
   margin: auto;
   max-width: 1200px;
 }
@@ -92,46 +91,71 @@ main h1 {
   color: rgb(255, 255, 240);
   font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 2rem;
-  padding-bottom: 30px;
-  padding-top: 60px;
+  padding: 30px 30px;
 }
 main h2 {
   color: rgb(255, 255, 240);
   font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 1.5rem;
-  padding-bottom: 25px;
-  padding-top: 50px;
+  margin: 20px 40px;
+  position: relative;
+  display: inline-block;
+}
+main h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 75%;
+  height: 3px;
+  background-color: rgb(200, 151, 28);
 }
 main h3 {
   color: rgb(200, 200, 200);
   font-family: "Josefin Sans", Arial, Courier, monospace;
   font-size: 1.5rem;
-  padding-bottom: 20px;
-  padding-top: 40px;
+  padding: 15px 50px;
 }
 main p {
-  padding: 30px 100px;
-  text-align: center;
+  padding: 30px 10px;
+}
+
+.or {
+  color: rgb(200, 151, 28);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
 }
 
 footer {
-  margin: 50px auto 10px auto;
+  margin: 50px auto 20px auto;
+  padding-top: 20px;
   text-align: center;
   flex-shrink: 0;
-  width: 100vw;
-  border-top: 1px dashed rgb(7, 7, 7);
+  width: 80vw;
+  max-width: 1200px;
+  border-top: 1px dashed rgb(200, 151, 28);
 }
 
 section {
-  border: 1px solid rgb(7, 7, 7);
-  margin: auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 20px auto;
   width: 80%;
   max-width: 1200px;
   padding: 20px;
+  border-radius: 24px;
+  border-top: 1px solid rgb(200, 151, 28);
+  border-left: 1px solid rgb(200, 151, 28);
+  background: rgba(28, 30, 108, 0.5);
+  background: linear-gradient(233deg, rgba(28, 30, 108, 0.7) 0%, rgba(17, 23, 80, 0.5) 100%);
+  backdrop-filter: blur-filter(20px);
+}
+
+.fixed-top-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 1px;
+  width: 100vw;
+  box-shadow: 0px 10px 20px 35px rgba(8, 16, 44, 0.9);
+  z-index: 9;
 }
 
 nav {
@@ -223,6 +247,7 @@ iframe {
   border-radius: 12px;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .btn {

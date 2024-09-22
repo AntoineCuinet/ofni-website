@@ -64,5 +64,9 @@ function show_content(): void {
             '<button class="btn">button</button>',
             '<button class="btn-danger">button danger</button>',
         '</div>',
+        '<section>',
+            '<h2>Section</h2>',
+            '<p>Blabla à propos de l\'OFNI</p>',
+        '</section>',
     '</main>';
 }

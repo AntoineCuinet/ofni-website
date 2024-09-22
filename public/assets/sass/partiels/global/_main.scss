@@ -2,7 +2,6 @@ main {
     // Grow shrink basis
     flex: 1 0 auto;
     width: 100%;
-    text-align: center;
     margin: auto;
     max-width: $breakpoint-large;
 
@@ -10,28 +9,43 @@ main {
         color: $color-font-title;
         font-family: $font-family-title;
         font-size: $font-size-xl;
-        padding-bottom: 30px;
-        padding-top: 60px;
+        padding: 30px 30px;
     }
     
     h2 {
         color: $color-font-title;
         font-family: $font-family-title;
         font-size: $font-size-l;
-        padding-bottom: 25px;
-        padding-top: 50px;
+        margin: 20px 40px;
+        position: relative;
+        display: inline-block;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 75%;
+            height: 3px;
+            background-color: $color-tertiary;
+        }
     }
 
     h3 {
         color: $color-font-p;
         font-family: $font-family-title;
         font-size: $font-size-l;
-        padding-bottom: 20px;
-        padding-top: 40px;
+        padding: 15px 50px;
     }
 
     p {
-        padding: 30px 100px;
-        text-align: center;
+        padding: 30px 10px;
     }
+
+    
+}
+
+.or {
+    color: $color-tertiary;
+    font-family: $font-family-title;
 }

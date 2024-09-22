@@ -84,7 +84,7 @@ function render_head(string $title, string $description, string $prefix = '.') :
             '<meta name="keywords" content="', KEY_WORDS, '">',
             '<title>', TITLE, ' | ', $title, '</title>',
             '<link rel="stylesheet" type="text/css" href="', $prefix,'/style.css">',
-            '<link rel="icon" type="image/icon" href="', $prefix,'/favicon.ico"/>',
+            '<link rel="icon" type="image/x-icon" href="', $prefix,'/favicon.ico"/>',
 
             '<meta property="og:image" content="http://', TITLE, '.fr/favicon.jpeg">',
             '<meta property="og:url" content="https://', TITLE, '.fr/">',
@@ -114,6 +114,7 @@ function render_head(string $title, string $description, string $prefix = '.') :
 function render_header(string $prefixe = '.') : void {
 
     echo
+    '<div class="fixed-top-box"></div>',
     '<header>',
     '</header>';
 }
@@ -128,7 +129,7 @@ function render_footer() : void {
 
     echo
     '<footer>',
-        '<p>&copy; ', TITLE, ' - Septembre 2024 - Tous droits réservés</p>',
+        '<p>&copy; <span class="or">', TITLE, '</span> - Septembre 2024 - Tous droits réservés</p>',
     '</footer>',
     '<script src="./assets/scripts/script.js"></script>',
     '</body></html>';
