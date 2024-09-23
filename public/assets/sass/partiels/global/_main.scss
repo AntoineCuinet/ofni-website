@@ -4,48 +4,4 @@ main {
     width: 100%;
     margin: auto;
     max-width: $breakpoint-large;
-
-    h1 {
-        color: $color-font-title;
-        font-family: $font-family-title;
-        font-size: $font-size-xl;
-        padding: 30px 30px;
-    }
-    
-    h2 {
-        color: $color-font-title;
-        font-family: $font-family-title;
-        font-size: $font-size-l;
-        margin: 20px 40px;
-        position: relative;
-        display: inline-block;
-
-        &::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 75%;
-            height: 3px;
-            background-color: $color-tertiary;
-        }
-    }
-
-    h3 {
-        color: $color-font-p;
-        font-family: $font-family-title;
-        font-size: $font-size-l;
-        padding: 15px 50px;
-    }
-
-    p {
-        padding: 30px 10px;
-    }
-
-    
-}
-
-.or {
-    color: $color-tertiary;
-    font-family: $font-family-title;
 }

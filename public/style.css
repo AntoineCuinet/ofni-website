@@ -87,51 +87,64 @@ main {
   margin: auto;
   max-width: 1200px;
 }
-main h1 {
-  color: rgb(255, 255, 240);
-  font-family: "Josefin Sans", Arial, Courier, monospace;
-  font-size: 2rem;
-  padding: 30px 30px;
-}
-main h2 {
-  color: rgb(255, 255, 240);
-  font-family: "Josefin Sans", Arial, Courier, monospace;
-  font-size: 1.5rem;
-  margin: 20px 40px;
-  position: relative;
-  display: inline-block;
-}
-main h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 75%;
-  height: 3px;
-  background-color: rgb(200, 151, 28);
-}
-main h3 {
-  color: rgb(200, 200, 200);
-  font-family: "Josefin Sans", Arial, Courier, monospace;
-  font-size: 1.5rem;
-  padding: 15px 50px;
-}
-main p {
-  padding: 30px 10px;
-}
-
-.or {
-  color: rgb(200, 151, 28);
-  font-family: "Josefin Sans", Arial, Courier, monospace;
-}
 
 footer {
-  margin: 50px auto 20px auto;
-  padding-top: 20px;
-  text-align: center;
   flex-shrink: 0;
+  width: 100vw;
+  margin: 50px auto 0 auto;
+  padding-top: 20px;
+  background: linear-gradient(233deg, rgba(28, 30, 108, 0.7) 0%, rgba(17, 23, 80, 0.5) 100%);
+  border-top-left-radius: 48px;
+  border-top-right-radius: 48px;
+  border-top: 1px solid rgb(200, 151, 28);
+}
+footer .footer-row {
+  max-width: 1200px;
+  width: 90vw;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+footer .footer-row .footer-col {
+  flex-basis: 25%;
+  padding: 10px;
+}
+@media screen and (max-width: 720px) {
+  footer .footer-row .footer-col {
+    flex-basis: 100%;
+    padding: 30px;
+  }
+}
+footer .footer-row .footer-col button {
+  appearance: none;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-align: center;
+  background: transparent;
+  margin-right: 15px;
+}
+footer .footer-row .footer-col button svg {
+  fill: rgb(200, 151, 28);
+}
+footer .footer-row .footer-col:nth-child(2) {
+  flex-basis: 15%;
+}
+@media screen and (max-width: 720px) {
+  footer .footer-row .footer-col:nth-child(2) {
+    flex-basis: 100%;
+    padding: 30px;
+  }
+}
+footer .footer-copyright {
+  text-align: center;
   width: 80vw;
   max-width: 1200px;
+  margin: 25px auto 0 auto;
+  padding: 10px;
   border-top: 1px dashed rgb(200, 151, 28);
 }
 
@@ -143,9 +156,69 @@ section {
   border-radius: 24px;
   border-top: 1px solid rgb(200, 151, 28);
   border-left: 1px solid rgb(200, 151, 28);
-  background: rgba(28, 30, 108, 0.5);
   background: linear-gradient(233deg, rgba(28, 30, 108, 0.7) 0%, rgba(17, 23, 80, 0.5) 100%);
   backdrop-filter: blur-filter(20px);
+}
+
+h1 {
+  color: rgb(255, 255, 240);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
+  font-size: 2rem;
+  padding: 30px 30px;
+}
+
+h2 {
+  color: rgb(255, 255, 240);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
+  font-size: 1.5rem;
+  margin: 20px 40px;
+  position: relative;
+  display: inline-block;
+}
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 75%;
+  height: 3px;
+  background-color: rgb(200, 151, 28);
+}
+
+h3 {
+  color: rgb(255, 255, 240);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
+  font-size: 1.125rem;
+  margin: 15px 50px;
+  padding-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 75%;
+  height: 3px;
+  background-color: rgb(200, 151, 28);
+}
+
+h4 {
+  color: rgb(200, 200, 200);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
+  font-size: 1.125rem;
+  padding: 10px 60px;
+}
+
+p {
+  padding: 10px 5px;
+}
+
+.or {
+  color: rgb(200, 151, 28);
+  font-family: "Josefin Sans", Arial, Courier, monospace;
+  font-weight: bold;
 }
 
 .fixed-top-box {
@@ -270,6 +343,36 @@ iframe {
 .btn-danger:hover {
   color: rgb(255, 97, 97);
   border-color: rgb(255, 97, 97);
+}
+
+.form-newsletter {
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(200, 151, 28);
+  margin-bottom: 30px;
+}
+.form-newsletter svg:first-child {
+  margin-right: 10px;
+  fill: rgb(200, 151, 28);
+}
+.form-newsletter input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(200, 200, 200);
+  outline: none;
+}
+.form-newsletter button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.form-newsletter button svg {
+  fill: rgb(200, 151, 28);
+  transform: translateX(15px);
 }
 
 /*# sourceMappingURL=style.css.map */

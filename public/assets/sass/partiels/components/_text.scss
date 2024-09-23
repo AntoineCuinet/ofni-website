@@ -1,0 +1,63 @@
+h1 {
+    color: $color-font-title;
+    font-family: $font-family-title;
+    font-size: $font-size-xl;
+    padding: 30px 30px;
+}
+
+h2 {
+    color: $color-font-title;
+    font-family: $font-family-title;
+    font-size: $font-size-l;
+    margin: 20px 40px;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 75%;
+        height: 3px;
+        background-color: $color-tertiary;
+    }
+}
+
+h3 {
+    color: $color-font-title;
+    font-family: $font-family-title;
+    font-size: $font-size-m;
+    margin: 15px 50px;
+    padding-bottom: 10px;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 3px;
+        width: 75%;
+        height: 3px;
+        background-color: $color-tertiary;
+    }
+}
+
+
+h4 {
+    color: $color-font-p;
+    font-family: $font-family-title;
+    font-size: $font-size-m;
+    padding: 10px 60px;
+}
+
+p {
+    padding: 10px 5px;
+}
+
+.or {
+    color: $color-tertiary;
+    font-family: $font-family-title;
+    font-weight: $font-weight-b;
+}

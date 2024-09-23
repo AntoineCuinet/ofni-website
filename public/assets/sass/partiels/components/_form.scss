@@ -1,2 +1,36 @@
 form {
 }
+
+.form-newsletter {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $color-tertiary;
+    margin-bottom: 30px;
+
+    svg:first-child {
+        margin-right: 10px;        
+        fill: $color-tertiary;
+    }
+
+    input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: $color-font-p;
+        outline: none;
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        svg {
+            fill: $color-tertiary;
+            transform: translateX(15px);
+        }
+    }
+}

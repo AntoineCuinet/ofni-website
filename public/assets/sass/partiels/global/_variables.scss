@@ -2,8 +2,7 @@
 // Colors
 // ========================================================================
 $color-primary: rgb(8, 16, 44) !default; // background color (60%)
-$color-secondary: rgb(13, 52, 88) !default; // (30%)
-//background: linear-gradient(97deg, rgba(28,30,108,1) 0%, rgba(17,23,80,1) 100%);
+$color-secondary: linear-gradient(233deg, rgba(28,30,108,0.7) 0%, rgba(17,23,80,0.5) 100%) !default; // (30%)
 $color-tertiary: rgb(200, 151, 28) !default; // (10%)
 $color-quaternary: rgb(228, 188, 86) !default; // hover color (>1%)
 $color-white: rgb(255, 255, 240) !default;
@@ -16,6 +15,7 @@ $color-danger-hover: rgb(255, 97, 97) !default;
 
 $box-shadow-black: 0 2px 6px rgba(0, 0, 0, 0.3);
 $box-shadow-white: 0 2px 6px rgba(255, 255, 255, 0.3);
+$box-shadow-blue: 0px 10px 20px 35px rgba(8, 16, 44, 0.9);
 $box-shadow-right: 4px 0px 6px -2px rgba(0, 0, 0, 0.1);
 
 

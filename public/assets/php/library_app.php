@@ -42,8 +42,8 @@ define('TITLE', 'OFNI');
 define('KEY_WORDS', 'association, etudiant, étudiants, fac, OFNI, code, Fun, Algo, Bat. C,Programmation, PDL, Détente, Entraide, Informatique, Java, JS, C++, Python, Framework, PHP, Soirées, Jeux Vidéo, Films, Jeux de société, Sorties, Ski, Révisions, Laser Game, Trampo Park, Réseau, Asso, NUIT DE L’INFO');
 
 // Constants: definition of fonts
-define('FONT_TITLE', 'https://fonts.googleapis.com/css2?family=Josefin+Sans');
-define('FONT_PARAGRAPH', 'https://fonts.googleapis.com/css2?family=Noto+Sans');
+define('FONT_TITLE', 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+define('FONT_PARAGRAPH', 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
 
 
@@ -129,7 +129,43 @@ function render_footer() : void {
 
     echo
     '<footer>',
-        '<p>&copy; <span class="or">', TITLE, '</span> - Septembre 2024 - Tous droits réservés</p>',
+        '<div class="footer-row">',
+
+            '<div class="footer-col">',
+                '<h3>Informations</h3>',
+                '<p>OFNI est l\'association des étudiants de la faculté des sciences de l\'Université de Franche-Comté.</p>',
+                '<p>E-mail: <a href="mailto:contact@ofni.asso.fr">Mail de contact</a></p>',
+            '</div>',
+    
+            '<div class="footer-col">',
+                '<h3>Liens</h3>',
+                '<ul>',
+                    '<li><a href="./index.php">Accueil</a></li>',
+                    '<li><a href="./mentions.php">Mentions légales</a></li>',
+                '</ul>',
+            '</div>',
+
+            '<div class="footer-col">',
+                '<h3>Newsleter</h3>',
+                '<form class="form-newsletter">',
+                    '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M18.5,1H5.5A5.506,5.506,0,0,0,0,6.5v11A5.506,5.506,0,0,0,5.5,23h13A5.506,5.506,0,0,0,24,17.5V6.5A5.506,5.506,0,0,0,18.5,1Zm0,3a2.476,2.476,0,0,1,1.643.631l-6.5,6.5a2.373,2.373,0,0,1-3.278,0l-6.5-6.5A2.476,2.476,0,0,1,5.5,4Zm0,16H5.5A2.5,2.5,0,0,1,3,17.5V8.017l5.239,5.239a5.317,5.317,0,0,0,7.521,0L21,8.017V17.5A2.5,2.5,0,0,1,18.5,20Z"/></svg>',
+                    '<input type="email" name="email" placeholder="Votre meilleure adresse mail" required>',
+                    '<button type="submit"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.75,9.525,11.164,4.939A1.5,1.5,0,0,0,9.043,7.061l4.586,4.585a.5.5,0,0,1,0,.708L9.043,16.939a1.5,1.5,0,0,0,2.121,2.122l4.586-4.586A3.505,3.505,0,0,0,15.75,9.525Z"/></svg></button>',
+                '</form>',
+
+                '<h3>Réseaux</h3>',
+                '<div>',
+                    '<button></button>',
+                    '<button><svg viewBox="0 0 128 128" width="40" height="40"><path d="M116.42 5.07H11.58a6.5 6.5 0 00-6.5 6.5v104.85a6.5 6.5 0 006.5 6.5H68V77.29H52.66V59.5H68V46.38c0-15.22 9.3-23.51 22.88-23.51a126 126 0 0113.72.7v15.91h-9.39c-7.39 0-8.82 3.51-8.82 8.66V59.5H104l-2.29 17.79H86.39v45.64h30a6.51 6.51 0 006.5-6.5V11.58a6.5 6.5 0 00-6.47-6.51z"></path></svg></button>',
+                    '<button><svg viewBox="0 0 128 128" width="40" height="40"><path d="M116.659 45.061c-5.075-3.895-12.286-5.754-21.087-5.754-9.648 0-16.383 2.199-19.939 6.77-1.626-1.76-3.659-3.162-5.963-4.229-2.444-2.479-4.981-3.986-7.574-4.717 5.754-3.695 12.497-8.684 21.036-15.426-34.694 3.555-51.459 6.94-81.245 24.881 1.219 0 2.396.006 3.546.02-.711 5.572-.341 13.883-.208 16.342-3.991 10.197-.406 18.488 2.579 25.945 0-8.979.44-16.244-2.109-25.557l20.25-16.051c-.326 3.025-.277 6.555.305 10.807l.063.021-.232 1.162.918.162c-.227 1.506.001 3.073.001 4.749V106h18V66.383c0-1.982.65-3.719 1.053-5.217 2.765-.465 5.64-1.256 8.167-2.338l.182.447c.162-.203.357-.447.515-.66 2.034-.908 4.166-2.014 6.001-3.316C64.178 56.986 66 60.654 66 66.383V106h21V66.383c0-8.123 2.4-12.182 9-12.182s9 4.059 9 12.182V106h21V64.186c0-8.463-3.419-14.725-9.341-19.125z"></path></svg></button>',
+
+                '</div>',
+            '</div>',
+
+        '</div>',
+        '<div class="footer-copyright">',
+            '<p>&copy; <span class="or">', TITLE, '</span> - Septembre 2024 - Tous droits réservés</p>',
+        '</div>',
     '</footer>',
     '<script src="./assets/scripts/script.js"></script>',
     '</body></html>';

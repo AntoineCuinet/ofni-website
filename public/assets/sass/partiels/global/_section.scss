@@ -1,15 +1,11 @@
 section {
-    // border: 1px solid red;
     margin: 20px auto;
-    // text-align: center;
-
     width: 80%;
     max-width: $breakpoint-large;
     padding: 20px;
     border-radius: $border-rad * 2;
     border-top: 1px solid $color-tertiary;
     border-left: 1px solid $color-tertiary;
-    background: rgb(28,30,108, 0.5);
-    background: linear-gradient(233deg, rgba(28,30,108,0.7) 0%, rgba(17,23,80,0.5) 100%);
+    background: $color-secondary;
     backdrop-filter: blur-filter(20px);
 }
