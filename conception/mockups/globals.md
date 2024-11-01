@@ -96,20 +96,20 @@ Un logo qui se transforme (info/ofni)
 Noir: rgb(7,7,7)
 Blanc: rgb(255, 255, 240)
 Gris: rgb(200, 200, 200)
-Primaire: bleu nuit: rgb(8, 16, 44)
+Primaire: bleu nuit: rgb(16, 29, 46)
 Secondaire: bleu clair: rgb(31, 78, 121)
 Tertière: jaune: rgb(200, 151, 28)
+Couleurs du logo :
+    rose #ec008c
+    bleu #0f75bc
+    orange #f7941e
+    vert #39b54a
 
 #### Enciènes couleurs
 
 - Couleur de fond : #131418
 - Couleur secondaire : #2B2D35
 - Couleur titre + corps de texte : #E2E2E2
-- Couleurs du logo :
-  - rose #ec008c
-  - bleu #0f75bc
-  - orange #f7941e
-  - vert #39b54a
 
 ### Les police et typographie
 
